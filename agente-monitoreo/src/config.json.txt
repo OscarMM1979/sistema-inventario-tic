@@ -1,0 +1,6 @@
+{
+    "backendUrl": "http://localhost:3000",
+    "interval": 300000,
+    "equipoId": 1,
+    "apiKey": "clave_agente_2026"
+}

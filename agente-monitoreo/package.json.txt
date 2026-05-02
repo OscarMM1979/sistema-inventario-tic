@@ -1,0 +1,11 @@
+{
+  "name": "agente-monitoreo-tic",
+  "version": "1.0.0",
+  "description": "Agente de monitoreo para equipos Windows",
+  "main": "src/sender.js",
+  "scripts": {
+    "start": "node src/sender.js",
+    "scan": "node src/scanner.js"
+  },
+  "dependencies": {}
+}

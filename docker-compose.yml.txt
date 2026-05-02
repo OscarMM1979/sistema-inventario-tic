@@ -1,0 +1,38 @@
+version: '3.8'
+
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: inventario_mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root_password
+      MYSQL_DATABASE: inventario_tic
+      MYSQL_USER: inventario_user
+      MYSQL_PASSWORD: inventario_pass
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+  backend:
+    build: ./backend
+    container_name: inventario_backend
+    ports:
+      - "3000:3000"
+    environment:
+      - DATABASE_URL=mysql://inventario_user:inventario_pass@mysql:3306/inventario_tic
+      - PORT=3000
+      - JWT_SECRET=clave_secreta_institucional_2026
+    depends_on:
+      - mysql
+
+  frontend:
+    build: ./frontend
+    container_name: inventario_frontend
+    ports:
+      - "3001:3000"
+    depends_on:
+      - backend
+
+volumes:
+  mysql_data:
